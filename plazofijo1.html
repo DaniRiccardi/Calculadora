@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>Calculadora de Plazo Fijo por Daniel Riccardi</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="icon" href="../favicon.ico?v=2" type="image/x-icon" />
+	 <style type="text/css">
+      body {
+      	font-family: 'Open Sans', sans-serif;
+      }
+
+      #titulo {
+      	text-align: center;
+      	padding:8px;
+      }
+
+      @media only screen and (max-width: 600px) {
+		#contenedor {
+      	width:100%;
+      	height:auto;
+      	margin:0 auto;
+      }
+
+		input[type=text], select {
+	    width: 100%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    display: inline-block;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+		}
+
+		input[type=number], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+
+		input[type=submit] {
+		    width: 100%;
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		input[type=button] {
+		    width: 100%;
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+	    background-color: #45a049;
+		}
+
+
+      }
+
+      .centrar {
+      	text-align: center;
+      	margin:0 auto;
+      }
+
+
+p.clear {
+    clear: both;
+   
+}
+
+
+@media only screen and (min-width: 601px) {
+
+	
+
+	input[type=text], select {
+	    width: 50%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    display: inline-block;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+	}
+
+	input[type=number], select {
+	    width: 50%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    display: inline-block;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+	}
+
+	input[type=submit] {
+	    width: 50%;
+	    background-color: #4CAF50;
+	    color: white;
+	    padding: 14px 20px;
+	    margin: 8px 0;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+
+	input[type=button] {
+	    width: 50%;
+	    background-color: #4CAF50;
+	    color: white;
+	    padding: 14px 20px;
+	    margin: 8px 0;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+
+	input[type=submit]:hover {
+    background-color: #45a049;
+	}
+
+}
+
+
+
+.resaltado {
+	color:green;
+	font-weight:bold;
+}
+
+.resaltadoError {
+	color:red;
+}
+
+	</style>
+
+</head>
+<body>
+	<form id="calc">
+	<div id="contenedor">
+       <h1 id="titulo">Calculadora de plazo fijo</h1>
+       <p class="centrar">Elegí un banco del listado, luego indicá el monto a invertir, y finalmente seleccioná el plazo.</p>
+	   <p class="clear"></p>
+	</div>
+
+
+	<div class="centrar">
+         <label for="seleccionBanco">Seleccioná un Banco:</label><br>
+</div>
+
+<div class="centrar">
+		<div class="select">
+  <select name="tna" id="tna">
+    <option value="23.4">Banco Ciudad</option>
+    <option value="10">Itaú</option>
+    <option value="15">HSBC</option>
+    <option value="12">Santander Río</option>
+    <option value="13.8">ICBC</option>
+    <option value="18">Banco Francés</option>
+    <option value="20.5">Banco Hipotecario</option>
+  </select>
+</div>
+</div>
+
+
+<div class="centrar">
+	 <p class="clear"></p>
+         <label for="seleccionDeposito">¿Cuánto te gustaría depositar en tu Plazo Fijo?</label><br>
+         <input type="number" min="0" value="" placeholder="$ 50000" id="deposito" required>       
+</div>
+
+
+<div class="centrar">
+	 <p class="clear"></p>
+         <label for="seleccionDias">Seleccioná cantidad de días</label><br>
+         <input placeholder="Cantidad de días" type="number" value="" min="0" id="duracion" required>
+          
+</div>
+
+
+<div class="centrar resaltadoError">
+	<span id="calcular_error"></span>
+</div>
+   
+
+<div class="centrar">
+	<span id="calc_result_plazo_fijo"></span>
+</div>
+
+<div class="centrar">
+	<p class="clear"></p>
+</div>
+
+<div class="centrar resaltado">
+	<span id="calc_result_plazo_fijo_limpia"></span>
+</div>
+
+<div class="centrar resaltado">
+	<span id="calc_result_plazo_fijo_limpia_porcentaje"></span>
+</div>
+
+ 
+
+
+<div class="centrar">
+	 <p class="clear"></p>
+	<input id="calcular" name="submit" value="Calcular" onclick="calcularPlazo()" type="button">
+</div>
+
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<script>
+        function calcularPlazo() {
+            $('#calcular_error').text("");
+            var sum = parseFloat($('#deposito').val() * (($('#tna').val() * $('#duracion').val() / 365) / 100 ));
+            var res = parseFloat($('#deposito').val()) + sum;
+
+            var depositoFinal = parseFloat($('#deposito').val());
+          
+
+            if (isFloat(res) || isInteger(res)) {
+                resPzoFijo = res.toFixed(2);
+                rezAcciones = res * 15;
+                rezAcciones = rezAcciones.toFixed(2);
+                
+
+                // valor tna porcentual
+                var tnaPorcentual = $('#tna').val();
+
+
+                // redondeo la ganancia a 2 digitos
+                var sumaLimpia = sum.toFixed(2);
+
+
+                $('#calc_result_plazo_fijo').text("TNA: " + tnaPorcentual +  " %" + " | Monto a reembolsar: " + "$" + resPzoFijo);
+
+
+
+                // calculo el porcentaje de ganancias
+                var sumaLimpiaPorcentaje = sumaLimpia / 10;
+    
+
+                var porcentaje = parseFloat($('#deposito').val() * (sumaLimpiaPorcentaje / 100));
+
+                // calculo el porcentaje de ganancias reales y limito a 2 decimales
+                var resultado=sumaLimpia/depositoFinal*100;
+                resultado = resultado.toFixed(2);
+
+                
+
+                $('#calc_result_plazo_fijo_limpia').text("Intereses Ganados: " + "$" + sumaLimpia);
+                $('#calc_result_plazo_fijo_limpia_porcentaje').text("Utilidad Porcentual: " + "%" + resultado);
+                $('#calc_result_mejores_acciones').text("$" + rezAcciones);
+
+            } else {
+                $('#calcular_error').text("* Debés completar los campos requeridos por favor *");
+            }
+        }
+
+
+        // valido errores
+        function isFloat(n) {
+            return n === +n && n !== (n|0);
+        }
+
+        function isInteger(n) {
+            return n === +n && n === (n|0);
+        }
+       
+    </script>
+
+</body>
+</html>
